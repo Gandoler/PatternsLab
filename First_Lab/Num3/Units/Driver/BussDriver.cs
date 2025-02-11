@@ -10,5 +10,5 @@ public class BussDriver: Driver
         LicenseInBase = License.Dcat;
     }
 
-    public static BussDriver Instance => _instance.Value;
+    public static BussDriver GetInstance => _instance.Value;
 }

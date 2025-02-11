@@ -16,7 +16,6 @@
     <ItemGroup>
       <Folder Include="Logs\" />
       <Folder Include="Num3\Factory\" />
-      <Folder Include="Num3\Units\Factory\" />
     </ItemGroup>
 
     <ItemGroup>

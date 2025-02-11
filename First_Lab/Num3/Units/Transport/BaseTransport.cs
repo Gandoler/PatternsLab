@@ -1,10 +1,12 @@
+using System.Security.Cryptography;
+
 namespace First_Lab.Num3.Units.Transport;
 
 public abstract class BaseTransport
 {
     protected readonly License License;
     protected Driver? Driver;
-    protected List<Passanger.Passanger> Passangers = new();
+    protected List<Passanger.Passenger> Passangers = new();
     protected int Capacity { get; }
 
     protected BaseTransport(int capacity,  License license)
@@ -13,13 +15,15 @@ public abstract class BaseTransport
         License = license;
     }
 
-    public bool AddPassanger(Passanger.Passanger passanger)
-    {
+    public bool AddPassanger(Passanger.Passenger passenger) {
         if (Passangers.Count < Capacity)
         {
-            Passangers.Add(passanger);
+            Console.WriteLine($"Пассажир добавлен-{passenger.Name} ");
+            Passangers.Add(passenger);
             return true;
         }
+
+        Console.WriteLine($"Пассажир  не добавлен ");
         return false;
     }
 
@@ -45,6 +49,7 @@ public abstract class BaseTransport
             {
                 if(driver.LicenseInBase == License) Console.WriteLine("С правами все ок");
                 Driver = driver;
+                Console.WriteLine("водитель назначен");
             }
             else
             {
