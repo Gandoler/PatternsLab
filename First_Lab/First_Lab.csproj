@@ -15,12 +15,20 @@
 
     <ItemGroup>
       <Folder Include="Logs\" />
-      <Folder Include="Num3\Factory\" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="Num3\Units\Transport\ITransport.cs" />
       <Compile Remove="Num3\Units\Transport\Transport.cs" />
+      <Compile Remove="Num3\Units\Factory\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Num3\Units\Factory\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Num3\Units\Factory\**" />
     </ItemGroup>
 
 </Project>
