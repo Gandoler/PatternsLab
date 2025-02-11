@@ -1,6 +1,6 @@
 namespace First_Lab.Num3.Units.Passanger;
 
-public class AdultBusPassenger: Passenger
+public class AdultBusPassenger: Passenger, IBusPassenger
 {
     public override decimal GetTicketPrice()
     {

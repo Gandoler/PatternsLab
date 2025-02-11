@@ -7,7 +7,7 @@ namespace Second_Lab.builders;
 public class TaxiWithChildSeatBuilder: ITransportBuilder
 {
     private Taxi _taxi = new Taxi(true);
-    public void BuildDriver(Driver driver)
+    public ITransportBuilder BuildDriver(Driver driver)
     {
         if (driver is TaxiDriver taxiDriver)
         {
@@ -17,9 +17,10 @@ public class TaxiWithChildSeatBuilder: ITransportBuilder
         {
             throw new Exception("Not a TaxiDriver");
         }
+        return this;
     }
 
-    public void BuildPassengers(List<Passenger> passengers)
+    public ITransportBuilder BuildPassengers(List<Passenger> passengers)
     {
         foreach (var passenger in passengers)
         {
@@ -32,6 +33,7 @@ public class TaxiWithChildSeatBuilder: ITransportBuilder
                 Console.WriteLine("Not a TaxiPassanger");
             }
         }
+        return this;
     }
 
     public BaseTransport BuildVehicle()

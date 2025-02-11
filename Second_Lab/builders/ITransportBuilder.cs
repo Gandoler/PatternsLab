@@ -6,7 +6,7 @@ namespace Second_Lab.builders;
 
 public interface ITransportBuilder
 {
-    void BuildDriver(Driver driver);
-    void BuildPassengers(List<Passenger> passengers);
+    ITransportBuilder BuildDriver(Driver driver);
+    ITransportBuilder BuildPassengers(List<Passenger> passengers);
     BaseTransport BuildVehicle();
 }

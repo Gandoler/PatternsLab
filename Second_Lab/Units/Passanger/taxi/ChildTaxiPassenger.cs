@@ -4,11 +4,15 @@ public class ChildTaxiPassenger:Passenger, ITaxiPassanger
 {
     public bool RequiresChildSeat { get; set; }
 
-    ChildTaxiPassenger(int age)
+    public ChildTaxiPassenger(int age)
     {
         base.Age = age;
     }
     
+    public ChildTaxiPassenger()
+    {
+        
+    }
     public override decimal GetTicketPrice()
     {
         return  122m;

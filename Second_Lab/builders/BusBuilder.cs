@@ -8,7 +8,7 @@ public class BusBuilder: ITransportBuilder
 {
     private Buss _buss = new Buss();
     
-    public void BuildDriver(Driver driver)
+    public ITransportBuilder BuildDriver(Driver driver)
     {
         if (driver is BussDriver bussDriver)
         {
@@ -18,19 +18,25 @@ public class BusBuilder: ITransportBuilder
         {
             throw new Exception("Driver is not BussDriver");
         }
+
+        return this;
     }
 
-    public void BuildPassengers(List<Passenger> passengers)
+    public ITransportBuilder BuildPassengers(List<Passenger> passengers)
     {
         foreach (Passenger passenger in passengers)
         {
             if (passenger is IBusPassenger busPassenger)
             {
                 _buss.AddPassanger(busPassenger);
+                Console.WriteLine("Passengers added");
             }
-
-            Console.WriteLine("Пассажир не добавлен так как он должен ехать на такси");
+            else
+            {
+                Console.WriteLine("Пассажир не добавлен так как он должен ехать на такси");
+            }
         }
+        return this;
     }
 
     public BaseTransport BuildVehicle()
