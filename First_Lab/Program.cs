@@ -21,11 +21,11 @@ class Program
         First_Lab.ThreadLockSingleton.Instance.HelloWorld(); Log.Information("Hello World in ThreadLockSingleton");
         First_Lab.SingletonLazy.Instance.HelloWorld(); Log.Information("Hello World in SingletonLazy");
         First_Lab.SingletonStaticConstr.Instance.HelloWorld(); Log.Information("Hello World in SingletonStaticConstr");
-        
-        
-        
-        
-        
+        Console.WriteLine("###################\n\n\n");
+
+
+
+        Console.WriteLine("num2");
         // Создание фабрики для такси
         ITransportationFactory taxiFactory = new TaxiFactory();
         Driver taxiDriver = taxiFactory.CreateDriver("Иван");
@@ -33,7 +33,7 @@ class Program
         taxi.Depart();
         // Назначение водителя такси
         taxi.SignDriver(taxiDriver);
-
+        taxi.SignDriver(taxiDriver);
         // Создание пассажиров
         List<Passenger> passengers = new();
         for (int i = 0; i < 100; i++)
