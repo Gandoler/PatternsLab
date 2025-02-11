@@ -35,5 +35,27 @@ public abstract class BaseTransport
         }
     }
 
-    public abstract bool SignDriver(Driver driver);
+  
+
+    public virtual void SignDriver<T>(T driver) where T : Driver
+    {
+        if (Driver == null)
+        {
+            if (driver is T)
+            {
+                if(driver.LicenseInBase == License) Console.WriteLine("С правами все ок");
+                Driver = driver;
+            }
+            else
+            {
+                Console.WriteLine("вы назначили не того драйвера");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Водитель уже был назначен");
+        }
+
+    }
+
 }
