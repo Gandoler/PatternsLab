@@ -11,7 +11,7 @@ public class Taxi : BaseTransport
         this.ChildSeatxist = childSeatExist;
     }
 
-    public new bool AddPassanger(ITaxiInteface passenger)
+    public new bool AddPassanger(ITaxiPassanger passenger)
     {
         //проверяем, нужно ли пассажиру детское кресло
         if (passenger is ChildTaxiPassenger childPassenger)

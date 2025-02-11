@@ -1,6 +1,6 @@
 namespace First_Lab.Num3.Units.Passanger;
 
-public class ChildTaxiPassenger:Passenger, ITaxiInteface
+public class ChildTaxiPassenger:Passenger, ITaxiPassanger
 {
     public bool RequiresChildSeat { get; set; }
 
