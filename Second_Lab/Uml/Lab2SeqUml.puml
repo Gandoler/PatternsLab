@@ -1,0 +1,40 @@
+@startuml
+actor User
+participant "Main" as Main
+participant "BaseDirector" as Director
+participant "ITransportBuilder" as Builder
+participant "BusBuilder" as BusBuilder
+participant "TaxiWithChildSeatBuilder" as TaxiBuilder
+participant "Buss" as Bus
+participant "Taxi" as Taxi
+participant "Driver" as Driver
+participant "Passenger" as Passenger
+
+User -> Main : run()
+Main -> Director : new BaseDirector(Builder)
+Main -> Director : Build(Driver, List<Passenger>)
+Director -> Builder : BuildDriver(Driver)
+Builder -> BusBuilder : BuildDriver(BussDriver)
+BusBuilder -> Bus : SignDriver(BussDriver)
+Main -> Director : BuildPassengers(List<Passenger>)
+Director -> BusBuilder : BuildPassengers(List<Passenger>)
+BusBuilder -> Bus : AddPassenger(IBusPassenger)
+Main -> Director : BuildVehicle()
+Director -> BusBuilder : BuildVehicle()
+BusBuilder -> Bus : return Bus
+Main -> Bus : Depart()
+Bus -> Bus : Depart()
+
+Main -> Director : Build(Driver, List<Passenger>)
+Director -> TaxiBuilder : BuildDriver(TaxiDriver)
+TaxiBuilder -> Taxi : SignDriver(TaxiDriver)
+Main -> Director : BuildPassengers(List<Passenger>)
+Director -> TaxiBuilder : BuildPassengers(List<Passenger>)
+TaxiBuilder -> Taxi : AddPassenger(ITaxiPassenger)
+Main -> Director : BuildVehicle()
+Director -> TaxiBuilder : BuildVehicle()
+TaxiBuilder -> Taxi : return Taxi
+Main -> Taxi : Depart()
+Taxi -> Taxi : Depart()
+
+@enduml

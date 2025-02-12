@@ -1,0 +1,25 @@
+@startuml
+actor User
+participant "Airplane" as Airplane
+participant "FirstClass" as FirstClass
+participant "BusinessClass" as BusinessClass
+participant "EconomyClass" as EconomyClass
+participant "Passenger" as Passenger
+
+User -> Airplane : AddPassenger(Passenger)
+Airplane -> FirstClass : AddPassenger(Passenger)
+FirstClass -> Airplane : Return true
+
+User -> Airplane : CheckBaggage()
+Airplane -> FirstClass : GetTotalBaggageWeight()
+FirstClass -> Airplane : Return TotalBaggageWeight
+Airplane -> BusinessClass : GetTotalBaggageWeight()
+BusinessClass -> Airplane : Return TotalBaggageWeight
+Airplane -> EconomyClass : GetTotalBaggageWeight()
+EconomyClass -> Airplane : Return TotalBaggageWeight
+Airplane -> Airplane : Calculate Excess Baggage
+Airplane -> EconomyClass : RemoveExcessBaggage(ExcessWeight)
+EconomyClass -> Passenger : Reduce Baggage Weight
+Passenger -> EconomyClass : Return New Weight
+
+@enduml
