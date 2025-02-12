@@ -23,7 +23,7 @@ public class FirstClass
         if (passenger.Class == FlightClass.First)
         {
             _passengers.Add(passenger);
-            Console.WriteLine($"Пасажир {passenger.Name} успешно сел");
+            Console.WriteLine($"Пасажир {passenger.Name} успешно сел в первый класс");
             return true;
         }
         else
