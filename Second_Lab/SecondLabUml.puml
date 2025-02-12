@@ -142,4 +142,9 @@ BusBuilder --> Buss : builds
 TaxiWithChildSeatBuilder --> Taxi : builds
 BaseDirector --> ITransportBuilder : depends on
 
+BaseTransport "1" --> "1" Driver : has
+BaseTransport "1" --> "*" Passenger : carries
+BaseDirector "1" --> "1" ITransportBuilder : uses
+Driver --> License : has
+BaseTransport --> License : has
 @enduml
