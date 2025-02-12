@@ -6,6 +6,8 @@ public class EconomyClass
 {
     private List<Passenger> _passengers = new();
     private const uint MaxValue = 150;
+    
+    public List<Passenger> Passengers => _passengers;
 
     public bool AddPassenger(Passenger passenger)
     {
@@ -33,6 +35,8 @@ public class EconomyClass
             return false;
         }
     }
+
+   
     
     public int GetTotalBaggageWeight()
     {
