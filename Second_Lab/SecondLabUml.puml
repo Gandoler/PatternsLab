@@ -1,0 +1,145 @@
+@startuml
+interface ITransport {
+    bool SignDriver(Driver driver)
+    bool AddPassenger(Passenger passenger)
+    void Depart()
+}
+
+class Taxi extends BaseTransport {
+    public bool ChildSeatExist { get; set; }
+    public Taxi(bool childSeatExist) : base(4, License.BCat)
+    public new bool AddPassenger(ITaxiPassenger passenger)
+}
+
+class Buss extends BaseTransport {
+    public Buss() : base(30, License.Dcat) { }
+    public new bool AddPassenger(IBusPassenger passenger)
+}
+
+abstract class BaseTransport {
+    protected readonly License License
+    protected Driver Driver
+    protected List<Passenger> Passengers = new()
+    protected int Capacity { get; }
+    
+    protected BaseTransport(int capacity, License license)
+    
+    public bool AddPassenger(Passenger passenger)
+    public virtual void Depart()
+    public virtual void SignDriver<T>(T driver) where T : Driver
+}
+
+abstract class Passenger {
+    public string Name
+    public int Age
+    public abstract decimal GetTicketPrice()
+}
+
+interface ITaxiPassenger {}
+
+class ChildTaxiPassenger extends Passenger implements ITaxiPassenger {
+    public bool RequiresChildSeat { get; set; }
+    
+    public ChildTaxiPassenger(int age)
+    public ChildTaxiPassenger()
+    public override decimal GetTicketPrice()
+}
+
+class AdultTaxiPassenger extends Passenger implements ITaxiPassenger {
+    public override decimal GetTicketPrice()
+}
+
+interface IBusPassenger {}
+
+class DiscountBusPassenger extends Passenger implements IBusPassenger {
+    public override decimal GetTicketPrice()
+}
+
+class ChildBusPassenger extends Passenger implements IBusPassenger {
+    public override decimal GetTicketPrice()
+}
+
+class AdultBusPassenger extends Passenger implements IBusPassenger {
+    public override decimal GetTicketPrice()
+}
+
+abstract class Driver {
+    public License LicenseInBase { get; protected set; }
+    public string Name { get; protected set; }
+    protected Driver(string name)
+}
+
+enum License {
+    BCat
+    Dcat
+}
+
+class TaxiDriver extends Driver {
+    -static Lazy<TaxiDriver> _instance
+    -TaxiDriver()
+    +static TaxiDriver GetInstance()
+}
+TaxiDriver : <<singleton>>
+TaxiDriver : -static Lazy<TaxiDriver> _instance
+TaxiDriver : -TaxiDriver()
+TaxiDriver : +static TaxiDriver GetInstance()
+
+class BussDriver extends Driver {
+    -static Lazy<BussDriver> _instance
+    -BussDriver()
+    +static BussDriver GetInstance()
+}
+BussDriver : <<singleton>>
+BussDriver : -static Lazy<BussDriver> _instance
+BussDriver : -BussDriver()
+BussDriver : +static BussDriver GetInstance()
+
+interface IDirector {
+    void Build(Driver driver, List<Passenger> passengers)
+}
+
+class BaseDirector implements IDirector {
+    private ITransportBuilder _builder
+    public BaseDirector(ITransportBuilder builder)
+    public void Build(Driver driver, List<Passenger> passengers)
+}
+
+interface ITransportBuilder {
+    ITransportBuilder BuildDriver(Driver driver)
+    ITransportBuilder BuildPassengers(List<Passenger> passengers)
+    BaseTransport BuildVehicle()
+}
+
+class BusBuilder implements ITransportBuilder {
+    private Buss _buss = new Buss()
+    public ITransportBuilder BuildDriver(Driver driver)
+    public ITransportBuilder BuildPassengers(List<Passenger> passengers)
+    public BaseTransport BuildVehicle()
+}
+
+class TaxiWithChildSeatBuilder implements ITransportBuilder {
+    private Taxi _taxi = new Taxi(true)
+    public ITransportBuilder BuildDriver(Driver driver)
+    public ITransportBuilder BuildPassengers(List<Passenger> passengers)
+    public BaseTransport BuildVehicle()
+}
+
+' --- Связи --- '
+
+Taxi --> ITaxiPassenger : contains
+Buss --> IBusPassenger : contains
+
+TaxiDriver --> Driver : extends
+BussDriver --> Driver : extends
+Taxi --> BaseTransport : extends
+Buss --> BaseTransport : extends
+
+Taxi --> ITaxiPassenger : depends on
+Buss --> IBusPassenger : depends on
+
+BaseDirector --> ITransportBuilder : uses
+BusBuilder --> Buss : builds
+TaxiWithChildSeatBuilder --> Taxi : builds
+BaseDirector --> ITransportBuilder : depends on
+
+@enduml
