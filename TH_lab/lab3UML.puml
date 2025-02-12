@@ -1,0 +1,94 @@
+@startuml
+!define RECTANGLE class
+
+' Классы с аттрибутами и методами
+RECTANGLE Airplane {
+    - FirstClass _firstClass
+    - BusinessClass _businessClass
+    - EconomyClass _economyClass
+    - PilotCabin _pilotCabin
+    - CrewCabin _crewCabin
+    - int MaxBaggageWeight
+    - int currentBaggageWeight
+    + Airplane(int maxWeight)
+    + bool CheckBaggage()
+    - int RemoveExcessBaggage(int excessBaggage)
+    + bool AddPilot(Pilot pilot)
+    + bool AddCrew(Stewardess stewardess)
+    + bool AddPassenger(Passenger passenger)
+}
+
+class Stewardess {
+    - string Name
+    - int Age
+    + Stewardess(string name, int age)
+}
+
+class Pilot {
+    - string Name
+    + Pilot(string name)
+}
+
+class Passenger {
+    - string Name
+    - int BaggageWeight
+    - FlightClass Class
+    + Passenger(string name, int baggageWeight, FlightClass passengerClass)
+}
+
+enum FlightClass {
+    Business
+    Economy
+    First
+}
+
+class FirstClass {
+    - List<Passenger> _passengers
+    - const uint MaxValue = 10
+    + bool AddPassenger(Passenger passenger)
+    + int GetTotalBaggageWeight()
+}
+
+class EconomyClass {
+    - List<Passenger> _passengers
+    - const uint MaxValue = 150
+    + List<Passenger> Passengers
+    + bool AddPassenger(Passenger passenger)
+    + int GetTotalBaggageWeight()
+}
+
+class BusinessClass {
+    - List<Passenger> _passengers
+    - const uint MaxValue = 20
+    + bool AddPassenger(Passenger passenger)
+    + int GetTotalBaggageWeight()
+}
+
+class PilotCabin {
+    - List<Pilot> _pilots
+    - const uint MaxPilots = 2
+    + bool AddPilot(Pilot pilot)
+}
+
+class CrewCabin {
+    - List<Stewardess> _stewardesses
+    - const uint MaxStewardesses = 6
+    + bool AddStewardess(Stewardess stewardess)
+}
+
+' Связи между классами
+Airplane "1" --> "1..*" FirstClass : Contains
+Airplane "1" --> "1..*" BusinessClass : Contains
+Airplane "1" --> "1..*" EconomyClass : Contains
+Airplane "1" --> "1" PilotCabin : Contains
+Airplane "1" --> "1" CrewCabin : Contains
+
+FirstClass "1..*" --> "1..*" Passenger : Manages
+BusinessClass "1..*" --> "1..*" Passenger : Manages
+EconomyClass "1..*" --> "1..*" Passenger : Manages
+
+PilotCabin "1..*" --> "1..*" Pilot : Manages
+CrewCabin "1..*" --> "1..*" Stewardess : Manages
+
+Passenger "1" --> "1" FlightClass : Has
+@enduml
