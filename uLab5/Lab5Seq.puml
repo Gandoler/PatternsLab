@@ -1,0 +1,34 @@
+@startuml
+actor User
+entity Context
+entity MainInterpretator
+entity ITextFixer
+entity SpaceFixer
+entity DashFixer
+entity QuoteFixer
+entity PunctuationFixer
+entity NewlineFixer
+
+User -> MainInterpretator : AddFixer(SpaceFixer)
+User -> MainInterpretator : AddFixer(DashFixer)
+User -> MainInterpretator : AddFixer(QuoteFixer)
+User -> MainInterpretator : AddFixer(PunctuationFixer)
+User -> MainInterpretator : AddFixer(NewlineFixer)
+
+User -> MainInterpretator : Interpret(context)
+MainInterpretator -> ITextFixer : Interpret(context)
+ITextFixer -> SpaceFixer : Interpret(context)
+SpaceFixer -> Context : context.Text = Regex.Replace(context.Text, @"[^\S\r\n]+", " ")
+ITextFixer -> DashFixer : Interpret(context)
+DashFixer -> Context : context.Text = context.Text.Replace(" - ", " — ")
+ITextFixer -> QuoteFixer : Interpret(context)
+QuoteFixer -> Context : context.Text = context.Text.Replace("“", "«").Replace("”", "»")
+ITextFixer -> PunctuationFixer : Interpret(context)
+PunctuationFixer -> Context : context.Text = Regex.Replace(context.Text, @"\s+([\.,\)])", "$1")
+PunctuationFixer -> Context : context.Text = Regex.Replace(context.Text, @"\(\s+", "(")
+ITextFixer -> NewlineFixer : Interpret(context)
+NewlineFixer -> Context : context.Text = Regex.Replace(context.Text, @"(\r?\n){2,}", "\n")
+
+User -> Console : Output (context.Text)
+
+@enduml

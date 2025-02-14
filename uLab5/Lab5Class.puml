@@ -1,0 +1,45 @@
+@startuml
+' Описание классов и интерфейса
+class MainInterpretator {
+    - List<ITextFixer> _fixers
+    + MainInterpretator()
+    + AddFixer(fixer: ITextFixer): MainInterpretator
+    + Interpret(context: Context): void
+}
+
+class SpaceFixer {
+    + Interpret(context: Context): void
+}
+
+class QuoteFixer {
+    + Interpret(context: Context): void
+}
+
+class PunctuationFixer {
+    + Interpret(context: Context): void
+}
+
+class NewlineFixer {
+    + Interpret(context: Context): void
+}
+
+interface ITextFixer {
+    + Interpret(context: Context): void
+}
+
+class DashFixer {
+    + Interpret(context: Context): void
+}
+
+' Связи между объектами
+MainInterpretator -> ITextFixer : AddFixer()
+MainInterpretator -> ITextFixer : Interpret()
+
+' Отношения наследования
+SpaceFixer -|> ITextFixer
+QuoteFixer -|> ITextFixer
+PunctuationFixer -|> ITextFixer
+NewlineFixer -|> ITextFixer
+DashFixer -|> ITextFixer
+
+@enduml
