@@ -1,0 +1,21 @@
+@startuml
+actor Преподаватель
+participant "DB (Singleton)" as DB
+participant "Деканат" as Deconat
+participant "Кафедра" as Kafedra
+
+== Отправка отчёта ==
+Преподаватель -> DB: SubmitReport()
+DB -> DB: AddReport()
+DB -> Преподаватель: "Отчёт сохранён"
+
+== Конец недели: проверка отчётности ==
+DB -> DB: EndOfWeek()
+alt Отчёт был добавлен
+    DB -> DB: _reportIsReady = false
+else Отчёт не добавлен
+    DB -> Deconat: Notify("Преподаватель не добавил отчёт.")
+    Deconat -> Kafedra: Notify("Преподаватель с вашей кафедры не добавил отчёт.")
+end
+
+@enduml
