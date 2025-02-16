@@ -30,6 +30,7 @@ public class DB: ISubject//синглтон бд
     public void AddReport()
     {
         _reportIsReeady = true;
+        Console.WriteLine("Получен отчет от препода на бд");
     }
     
     public void EndOfWeek()
