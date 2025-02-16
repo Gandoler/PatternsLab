@@ -1,0 +1,49 @@
+@startuml
+
+
+interface ISubject {
+    + Attach(IObserver observer)
+    + Detach(IObserver observer)
+    + Notify()
+}
+
+interface IObserver {
+    + Update(string message)
+}
+
+class Prepod {
+    + string Name { get; }
+    + Prepod(string name)
+    + void SubmitReport()
+}
+
+class DB implements ISubject {
+    - List<IObserver> _observers
+    - bool _reportIsReady
+    - static DB _instance
+    + static DB Instance { get; }
+    + void Attach(IObserver observer)
+    + void Detach(IObserver observer)
+    + void Notify()
+    + void AddReport()
+    + void EndOfWeek()
+}
+
+class Kafedra implements IObserver {
+    - List<IObserver> _observers
+    + void Update(string message)
+}
+
+class Deconat implements IObserver, ISubject {
+    - List<IObserver> _observers
+    + void Attach(IObserver observer)
+    + void Detach(IObserver observer)
+    + void Update(string message)
+    + void Notify()
+}
+
+Prepod --> DB : "Записывает отчёт"
+DB --> Kafedra : "Оповещает кафедру"
+DB --> Deconat : "Оповещает деканат в конце недели"
+Kafedra --> Deconat : "Передаёт информацию"
+@enduml
