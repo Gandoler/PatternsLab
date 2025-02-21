@@ -108,7 +108,6 @@ Composite позволяет работать с группами пассажи
 - Используя паттерн **Interpreter**, провести синтаксический анализ текста и устранить перечисленные ошибки.
 ![image](https://github.com/user-attachments/assets/7730234c-83b6-413a-bfcf-7b278f8b3570)
 
-Твои ссылки немного сломались, вот исправленный вариант:  
 
 📌 **UML-диаграммы:**  
 - [Диаграмма классов](https://github.com/Gandoler/PatternsLab/blob/main/uLab5/Lab5Class.png)  
@@ -126,12 +125,13 @@ Composite позволяет работать с группами пассажи
 ![image](https://github.com/user-attachments/assets/a737fd53-fe7a-4e2d-b1f0-e0ec15eaf354)
 ![image](https://github.com/user-attachments/assets/55112adb-680d-4627-861e-d56cd8b15dd9)
 
+📌 **UML-диаграммы:**  
+- [Диаграмма классов](https://github.com/Gandoler/PatternsLab/blob/main/ZLab6NoEvent/Lab6Class.png)  
+- [Диаграмма последовательности](https://github.com/Gandoler/PatternsLab/blob/main/ZLab6NoEvent/Lab6Sequence.png)  
 
-📌 **UML-диаграммы:**
-- [Диаграмма классов]([https://github.com/Gandoler/PatternsLab/blob/main/ZLab6NoEvent/Lab6Class.png)
-- [Диаграмма последовательности]([https://github.com/Gandoler/PatternsLab/blob/main/ZLab6NoEvent/Lab6Sequence.png)
+📌 **Код Observer:**  
+- [Посмотреть](https://github.com/Gandoler/PatternsLab/tree/main/ZLab6NoEvent)  
 
-📌 **Код Observer:** [Посмотреть]([https://github.com/Gandoler/PatternsLab/tree/main/ZLab6NoEvent)
 
 
 ## 📌 Lab 7: Разработка игры
