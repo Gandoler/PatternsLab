@@ -108,12 +108,14 @@ Composite позволяет работать с группами пассажи
 - Используя паттерн **Interpreter**, провести синтаксический анализ текста и устранить перечисленные ошибки.
 ![image](https://github.com/user-attachments/assets/7730234c-83b6-413a-bfcf-7b278f8b3570)
 
-📌 **UML-диаграммы:**
-- [Диаграмма классов]([[https://github.com/Gandoler/PatternsLab/blob/main/Lab4/Uml/Lab4ClassUML.png](https://github.com/Gandoler/PatternsLab478/blob/master/LAB4/Lab4ClassUML.png](https://github.com/Gandoler/PatternsLab/blob/main/uLab5/Lab5Class.png)
-- [Диаграмма последовательности]([[https://github.com/Gandoler/PatternsLab/blob/main/Lab4/Uml/Lab4SeqUml.png](https://github.com/Gandoler/PatternsLab478/blob/master/LAB4/Lab4SeqUml.png)](https://github.com/Gandoler/PatternsLab/blob/main/uLab5/Lab5Seq.png)
+Твои ссылки немного сломались, вот исправленный вариант:  
 
-📌 **Код Interpreter:** [Посмотреть]([[https://github.com/Gandoler/PatternsLab/blob/main/Lab4/Proxy.cs](https://github.com/Gandoler/PatternsLab478/tree/master/LAB4](https://github.com/Gandoler/PatternsLab/tree/main/uLab5)
+📌 **UML-диаграммы:**  
+- [Диаграмма классов](https://github.com/Gandoler/PatternsLab/blob/main/uLab5/Lab5Class.png)  
+- [Диаграмма последовательности](https://github.com/Gandoler/PatternsLab/blob/main/uLab5/Lab5Seq.png)  
 
+📌 **Код Interpreter:**  
+- [Посмотреть](https://github.com/Gandoler/PatternsLab/tree/main/uLab5)  
 
 ## 📌 Lab 6: Observer
 
